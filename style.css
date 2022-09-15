@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body * {
+    font-family: 'Inter' , sans-serif; 
+    /* significa altura da linha */
+    line-height: 160%;
+}
+
+body {
+    background-image: url(./assets/bg.jpg);
+    /* posição do bg fica no topo centralizado */
+    background-position: top center;
+    /* o 100% (LARGURA) faz com que o bg acompanhe o tamanho da janela sem perder
+    seu tamanho, ou seja fazendo com que a imagem se adeque ao tamanho.
+    o auto significa da altura, e ele mesmo se adequa. */
+    background-size: 100% auto;
+    /* no-repeat é para não repetir a imagem. */
+    background-repeat: no-repeat;
+    background-color: #121214;
+}
+
+header {
+    padding-top: 32px;
+/* o calc faz com eu declare que o css faça o cálculo de qualquer valor
+que eu declarar */
+    height: calc(120px + 32px);
+}
+
+header div img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+/* quando passar o mouse em cima do header, a escala vai se alterar para 1.1 */
+header div:hover {
+    transform: scale(1.1);
+}
+
+header div {
+    width: 120px;
+    margin: auto;
+    background-image: linear-gradient(90deg, #9572FC 0%,
+    #43E7AD 50.52%, #E2D45C 100%);
+    
+    border-radius: 50%;
+    display: flex;
+    padding: 4px;
+
+    /* foi adicionado uma transição (neste caso, tranform) que foi criado na
+    header div:hover para que quando se passar o mouse no header, o elemento ter uma
+    transição suave e que volte a escala 1.1 como já declarado no outro item */
+    transition: transform .3s;
+}
+
+main {
+    max-width: 580px;
+    width: 90%;
+    margin: 32px auto;
+
+/* o gap consegue ser utilizado com o grid, porque um elemento
+fica abaixo do outro */    
+    display: grid;
+    gap: 24px;
+
+    margin-top: 34px;
+}
+
+section {
+    color: white;
+
+/* gradiente linear a 90 graus, sendo roxo no começo, 50% no meio do card e amarelo em 100% */
+    background-image: linear-gradient(90deg, #9572FC 0%,
+    #43E7AD 50.52%, #E2D45C 100%);
+/* padding-top = preencimento da caixa, neste caso é o preenchimento de 4px do top do card */
+    padding-top: 4px;
+    border-radius: 10px;
+
+}
+
+section ul li {
+    transition: transform .3s;
+}
+
+section ul li:hover {
+    transform: scale(1.1);
+}
+
+/* estilizar o ul faz com que o elemento estilize toda a caixa
+(neste caso, o li), diferente do li, que seria apenas um item da lista. */
+section ul {
+    list-style: none;
+/* display = vizualização das caixas
+block = deixa um elemento abaixo do outro */
+    display: flex;
+/* flex-warp: wrap faz com que quando existem muitos elementos na caixa e não consegue mais se centralizar,
+ele joga os itens alinhados na próxima linha, assim devolvendo a centralização da página */
+    flex-wrap: wrap;
+/* o gap só funciona por conta que o display = flex
+porque estaria um elemento abaixo do outro, e não mudaria nada */
+    gap: 16px;
+
+/* ele estabelece uma distância de 24px de um elemento acima do outro */
+    margin-top: 24px;
+}
+
+section div {
+    background-color: #2A2634;
+    padding: 32px;
+    padding-top: 24px;
+    border-radius: 8px;
+
+/* border-top permite adicionar uma borda ao card, porém, é possível
+fazer apenas com uma cor,e não com muitas, como é esse caso */
+}
+
+section h2 {
+    letter-spacing: -0.47px;
+}
+
+section p {
+    letter-spacing: -0.18px;
+    color: #A1A1AA;
+}
+
+.games-list img {
+/* a altura sempre segue o tamanho da imagem */
+    width: 160px;
+    border-radius: 8px;
+    border: 1px solid #433E54;
+}
+
+.channel-list img {
+/* border-radius = borda e arredondamento da borda */
+    border-radius: 50%;
+    width: 70px;
+    border: 1px solid #433E54;
+}
+
+/* animation */
+
+
+header div {
+/* sempre que for declarar uma animação a um elemento, é necessário colocar
+aonde irá acontecer e por quanto tempo */
+/*  animation: lugar que vai acontecer a animação + por quanto tempo +
+delay (se necessário) + propriedade que faz com que se inicie o from e to normalmente,
+porém, após a animação concluída, ele "apaga" o mesmo (ele mantem o elemento no MESMO lugar) */
+    animation: fromTop .7s .4s backwards;
+}
+
+main section {
+    animation: fromBottom backwards .7s;
+}
+
+/* este é o elemento número 1 da section dentro do main (dos cards) */
+main section:nth-child(1) {
+    animation-delay: 0;
+}
+
+main section:nth-child(2) {
+    animation-delay: .4s;
+}
+
+main section:nth-child(3) {
+    animation-delay: .7s;
+}
+
+/* o @keyframes indica que vai ocorrer e define uma animação (dá um nome) para
+ um dos elementos, neste caso é o topo da página */
+/* o objetivo é fazer com que os itens da página comecem a 30px acima e desça até sua
+posição atual, que sempre será 0 */
+@keyframes fromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fromBottom {
+    from {
+        opacity: 0;
+/* diferente do fromTop, a animação vai ocorrer debaixo para cima como já declarado
+pelo fromBottom, e assim, também muda o valor do inicio, sendo positivo ao invés de negativo */
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* .social-medias {
+    /* TENTAR DESCOBRIR COMO COLOCAR AS REDES SOCIAIS A DIREITA E ALINHAR TODOS OS ITENS */
+
+
+/* .top {
+    padding-top: 0%;
+}
+
+#top {
+    border-radius: none;
+    list-style: none;
+    background-position: top center;
+    display: flex;
+}
+
+#image-top {
+    border-radius: 8px;
+} */
